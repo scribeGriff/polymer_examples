@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>simple echo - polymer</title>
+    <link rel="stylesheet" href="../bootstrap.css">
+    <link rel="stylesheet" href="../polymer_standard.css">
+    <script src="packages/polymer/boot.js"></script>
+  </head>
+
+  <body>
+    <template id="tmpl" bind>
+      <div class="border well">
+        <span>Insert your name:</span>
+        <input type="text" value="{{name}}" />
+        <h4>You are typing: {{name}}</h4>
+      </div>
+    </template>
+    <script type="application/dart" src="simple_echo.dart"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>bind functions - polymer</title>
+    <link rel="stylesheet" href="../bootstrap.css">
+    <link rel="stylesheet" href="../polymer_standard.css">
+    <script src="packages/polymer/boot.js"></script>
+  </head>
+
+  <body>
+    <template id="tmpl" bind>
+      <div class="border well">
+        <p>What's your name?:</p>
+        <input type="text" value="{{name}}" />
+        <button on-click="greet" data-msg='YAYAY' class="btn btn-primary">Click here!</button>
+        <h3>{{message}}</h3>
+      </div>
+    </template>
+    <script type="application/dart" src="bind_functions.dart"></script>
+  </body>
+</html>

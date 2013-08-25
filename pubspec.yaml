@@ -1,0 +1,8 @@
+name: polymer_test
+version: 0.0.1
+author: Richard Griffith
+description: Testing polymer for use with convo.lv
+dependencies:
+  browser: any
+  fancy_syntax: any
+  polymer: any
