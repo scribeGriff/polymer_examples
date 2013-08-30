@@ -1,0 +1,11 @@
+<polymer-element name="greetings-element">
+  <template>
+    <div class="border well">
+      <p>What's your name?:</p>
+      <input type="text" value="{{person.name}}">
+      <button on-click="greet" class="btn btn-primary">Click here!</button>
+      <h3>{{message}}</h3>
+    </div>
+  </template>
+  <script type="application/dart" src="bind_functions.dart"></script>
+</polymer>

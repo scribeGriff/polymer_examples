@@ -1,30 +1,20 @@
 import 'dart:html';
 import 'package:polymer/polymer.dart';
 
-class Person {
-  String name;
+class Person extends Object with ObservableMixin{
+  @observable String name;
 
   Person([this.name = '']);
 }
 
-class Greetings extends Object with ObservableMixin {
-  @observable String name;
+@CustomTag('greetings-element')
+class Greetings extends PolymerElement with ObservableMixin {
   @observable String message;
-  Person user;
+  @observable Person person = new Person();
 
-  Greetings() {
-    print('added person user');
-    user = new Person();
+  bool get applyAuthorStyles => true;
+
+  void greet(Event e, var detail, Node target) {
+    message = "Hello, " + person.name + "!";
   }
-
-  void greet(Event e, var detail, Element target) {
-    print('got the message');
-    //user.name = target.attributes['data-msg'];
-    message = target.attributes['data-msg'];
-    //message = "Hello, " + user.name + "!";
-  }
-}
-
-main() {
-  query('#tmpl').model = new Greetings();
 }
