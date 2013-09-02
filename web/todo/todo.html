@@ -1,41 +1,28 @@
-<!DOCTYPE html>
-
-<html>
-  <head>
-    <title>TODO example in Polymer</title>
-    <link rel="stylesheet" href="../bootstrap.css">
-    <link rel="stylesheet" href="../polymer_standard.css">
-    <script src="packages/polymer/boot.js"></script>
-  </head>
-  <body>
-    <polymer-element name="todo-element">
-      <template>
-      <div class="border well">
-        <h2>My TODO List</h2>
-        <div class="right">
-          <button on-click="markAllDone" class="btn btn-small">mark all done</button>
-          <button on-click="archiveDone" class="btn btn-small">archive done</button>
-        </div>
-        <p>Remaining <b>{{remaining}}</b> of <b>{{items.length}}</b> items.</p>
-        <ul class="well unstyled">
-          <template repeat="{{item in items}}" >
-            <li {{item}} class={{item.doneClass}}>
-              <label class="checkbox">
-              <input type="checkbox" checked="{{item.done}}"> {{item.text}}
-              </label>
-            </li>
-          </template>
-        </ul>
-        <form class="form-inline" onsubmit="return false;">
-          <input type="text" value="{{newItem.text}}">
-          <button id="add" on-click="add" class="btn btn-primary">add</button>
-          <button id="clear" on-click="clear" class="btn">clear</button>
-        </form>
-      </div>
+<polymer-element name="todo-element">
+  <template>
+  <div class="border well">
+    <h2>My TODO List</h2>
+    <div class="right">
+      <button on-click="markAllDone" class="btn btn-small">mark all done</button>
+      <button on-click="archiveDone" class="btn btn-small">archive done</button>
+    </div>
+    <p>Remaining: <b>{{remaining}}</b> of <b>{{items.length}}</b> items</p>
+    <ul class="well unstyled">
+      <template repeat="{{item in items}}" >
+        <li {{item}} class={{item.doneClass}}>
+          <label class="checkbox">
+            <input type="checkbox" checked="{{item.done}}"> {{item.text}}
+          </label>
+        </li>
       </template>
-      <script src="todo.dart" type="application/dart"></script>
-    </polymer-element>
-    <todo-element></todo-element>
-    <script type="application/dart" void main() {}></script>
-  </body>
-</html>
+    </ul>
+    <form class="form-inline" onsubmit="return false;">
+      <input type="text" value="{{newItem.text}}">
+      <button id="add" on-click="add" class="btn btn-primary">add</button>
+      <button id="clear" on-click="clear" class="btn">clear</button>
+    </form>
+  </div>
+  </template>
+  <script src="todo.dart" type="application/dart"></script>
+</polymer-element>
+

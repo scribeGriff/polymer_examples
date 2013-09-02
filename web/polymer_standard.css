@@ -9,6 +9,9 @@ body {
 h1, p {
   color: #333;
 }
+h2 {
+  text-align: center;
+}
 p {
   margin: 0 0 6px;
   padding-top: 4px;
@@ -27,6 +30,7 @@ li.done {
   float: right;
 }
 ul.well {
+  margin-top: 10px;
   background: white;
 }
 input[type="text"] {
