@@ -19,7 +19,7 @@
         <p>Remaining <b>{{remaining}}</b> of <b>{{items.length}}</b> items.</p>
         <ul class="well unstyled">
           <template repeat="{{item in items}}" >
-            <li {{item}} class={{classFor(item)}}>
+            <li {{item}} class={{item.doneClass}}>
               <label class="checkbox">
               <input type="checkbox" checked="{{item.done}}"> {{item.text}}
               </label>

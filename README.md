@@ -12,4 +12,4 @@ These are an attempt to create similar PolymerDart examples from the excellent i
 
 ### Other examples ###
 
-- [Todo](https://github.com/scribeGriff/polymer_examples/tree/master/web/todo "Todo") - last thing to figure out is how to update a class in a repeating template when the iterable has not been updated.
+- [Todo](https://github.com/scribeGriff/polymer_examples/tree/master/web/todo "Todo")

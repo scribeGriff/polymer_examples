@@ -5,15 +5,23 @@ class Item extends Object with ObservableMixin {
   @observable String text;
   @observable bool done;
 
-  Item([String this.text = '', bool this.done = false]);
+  Item([String this.text = '', bool this.done = false]) {
+    bindProperty(this, const Symbol('done'),
+        () => notifyProperty(this, const Symbol('doneClass')));
+  }
 
   bool get isEmpty => text.isEmpty;
 
-  clone() => new Item(text, done);
+  Item clone() => new Item(text, done);
 
-  clear() {
+  void clear() {
     text = '';
     done = false;
+  }
+
+  String get doneClass {
+    if (done) return 'done';
+    else return '';
   }
 }
 
@@ -40,14 +48,8 @@ class TodoElement extends PolymerElement with ObservableMixin {
     // note this only adds the listener for the items in items at instantiation
     // and not when adding afterwards.
     for (var item in items) {
-      if (item.done) {
-        print('finished with ${item.text}');
-      }
       item.changes.listen((records) {
         notifyProperty(this, const Symbol('remaining'));
-        if (item.done) {
-          print('finished with ${item.text}');
-        }
       });
     }
 
@@ -87,9 +89,6 @@ class TodoElement extends PolymerElement with ObservableMixin {
     newItem.clear();
     item.changes.listen((records) {
       notifyProperty(this, const Symbol('remaining'));
-      if (item.done) {
-        print('finished with ${item.text}');
-      }
     });
   }
 
@@ -103,11 +102,5 @@ class TodoElement extends PolymerElement with ObservableMixin {
 
   void archiveDone(Event e, var detail, Node target) {
     items.removeWhere((item) => item.done);
-  }
-
-  String classFor(Item item) {
-    print('this is getting called');
-    if (item.done) return 'done';
-    else return '';
   }
 }
