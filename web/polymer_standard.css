@@ -6,7 +6,30 @@ body {
   line-height: 1.2em;
   margin: 15px;
 }
-
 h1, p {
   color: #333;
+}
+p {
+  margin: 0 0 6px;
+  padding-top: 4px;
+}
+li.done {
+  color: gray;
+  text-decoration: line-through;
+}
+.border {
+  width: 360px;
+  margin: 20px auto;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.right {
+  float: right;
+}
+ul.well {
+  background: white;
+}
+input[type="text"] {
+  height: 30px;
+  width: 192px;
 }
