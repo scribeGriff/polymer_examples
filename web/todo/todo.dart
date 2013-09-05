@@ -6,7 +6,7 @@ class Item extends Object with ObservableMixin {
   @observable String text;
   @observable bool done;
 
-  Item([String this.text = '', bool this.done = false]) {
+  Item([this.text = '', this.done = false]) {
     // Monitor the done boolean to add/remove done class.
     bindProperty(this, const Symbol('done'),
         () => notifyProperty(this, const Symbol('doneClass')));
@@ -34,19 +34,17 @@ class Item extends Object with ObservableMixin {
 /// The todo-element.
 @CustomTag('todo-element')
 class TodoElement extends PolymerElement with ObservableMixin {
-  ObservableList<Item> items;
+  final ObservableList<Item> items =
+      toObservable([
+                    new Item('Learn about Dart', true),
+                    new Item('Learn about Polymer'),
+                    new Item('Create first Polymer app')
+                    ]);
   @observable Item newItem = new Item();
   ButtonElement addButton;
   ButtonElement clearButton;
 
   TodoElement() {
-    // Start off with a few items.
-    items = toObservable([
-      new Item('Learn about Dart', true),
-      new Item('Learn about Polymer'),
-      new Item('Create first Polymer app')
-    ]);
-
     // Need to check if the items list gets added to or has something removed.
     items.changes.listen((records) {
       notifyProperty(this, const Symbol('remaining'));
@@ -54,7 +52,7 @@ class TodoElement extends PolymerElement with ObservableMixin {
 
     // Also need to check if any of the items in items has a property that
     // changes.
-    for (var item in items) {
+    for (Item item in items) {
       item.changes.listen((records) {
         notifyProperty(this, const Symbol('remaining'));
       });
@@ -62,7 +60,7 @@ class TodoElement extends PolymerElement with ObservableMixin {
 
     // Check if text has been entered to enable buttons.
     newItem.changes.listen((records) {
-      if(newItem.isEmpty) {
+      if (newItem.isEmpty) {
         addButton.disabled = true;
         clearButton.disabled = true;
       } else {
@@ -96,7 +94,7 @@ class TodoElement extends PolymerElement with ObservableMixin {
   // Add a new item.
   void add(Event e, var detail, Node target) {
     if (newItem.text.isEmpty) return;
-    var item = newItem.clone();
+    Item item = newItem.clone();
     items.add(item);
     newItem.clear();
     item.changes.listen((records) {
